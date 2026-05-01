@@ -25,14 +25,39 @@
 
 ## Быстрый старт
 
-1. Шаг 1 — VPN и Git for Windows (если Windows)
-2. Шаг 2-3 — установи Claude Code и авторизуйся
-3. Шаг 4 — скачай `templates/CLAUDE.md` сырым:
-   - Mac: `curl -fsSL https://raw.githubusercontent.com/altbar/altairika-franchise/main/templates/CLAUDE.md -o ~/.claude/CLAUDE.md`
-   - Windows: `iwr https://raw.githubusercontent.com/altbar/altairika-franchise/main/templates/CLAUDE.md -OutFile $env:USERPROFILE\.claude\CLAUDE.md`
-4. Открой этот файл, поправь секцию "Кто я" под себя
-5. Запусти `claude`, напиши "прочитай мой CLAUDE.md, расскажи что обо мне знаешь" — проверь что подхватилось
-6. Шаги 5-11 — подключи нужные тебе инструменты (минимум: 6 голос, 7 Telegram, 9-10 Chromium+Google, 11 Exa)
+**Сначала пройди Шаги 1-3** (VPN, установка Claude Code, авторизация). Потом одной командой раскатай весь кит:
+
+### Mac
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/altbar/altairika-franchise/main/install.sh | bash
+```
+
+### Windows (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/altbar/altairika-franchise/main/install.ps1 | iex
+```
+
+Что сделает скрипт:
+- Клонирует репо в `~/altairika-franchise/`
+- Скопирует `templates/CLAUDE.md` в `~/.claude/CLAUDE.md` (с бэкапом существующего)
+- Установит команду `altairika-update` для обновлений
+
+После установки:
+1. Открой `~/.claude/CLAUDE.md` (или `%USERPROFILE%\.claude\CLAUDE.md`) и поправь секцию "Кто я"
+2. Запусти `claude`, напиши "прочитай мой CLAUDE.md, расскажи что обо мне знаешь" — проверь что подхватилось
+3. Иди по шагам 5-11 в `~/altairika-franchise/steps/` — подключи нужные инструменты
+
+### Обновления кита
+
+Когда УК выкатит новые шаги/инструкции:
+
+```bash
+altairika-update
+```
+
+Скрипт сделает `git pull` и покажет, что изменилось. Если шаблон CLAUDE.md обновился — предупредит и не перепишет твои правки автоматически.
 
 ## Доступ к корпоративным ресурсам
 
@@ -50,8 +75,8 @@
 
 - [x] CLAUDE.md template (бренд, тон, безопасность)
 - [x] Шаги 1-12 — все step-файлы готовы
-- [ ] `install.sh` / `install.ps1` — автоматическая раскатка кита (вместо ручного копирования)
-- [ ] `altairika-update` — скрипт обновления (`git pull` + подкладка обновлений в `~/.claude/`)
+- [x] `install.sh` / `install.ps1` — автоматическая раскатка кита
+- [x] `altairika-update` — скрипт обновления (`git pull` + проверка изменений CLAUDE.md)
 - [ ] Skills: post-writer, parent-reply, school-script, birthday-script, review-response
 - [ ] Prompt templates (5-7 готовых под повседневные задачи)
 - [ ] Vault — внутренние инструкции от УК (расписания акций, новые программы)
