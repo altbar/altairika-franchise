@@ -8,58 +8,50 @@
 
 ## Шаги онбординга
 
-| № | Шаг | Файл | Статус |
-|---|-----|------|--------|
-| 1 | Pre-install: VPN, Git for Windows | `steps/01-pre-install.md` | ⏳ скоро |
-| 2 | Установка Claude Code (Mac/Windows) | `steps/02-install-claude.md` | ⏳ скоро |
-| 3 | Авторизация Claude (подписка) | `steps/03-auth.md` | ⏳ скоро |
-| 4 | Личный CLAUDE.md (бренд + идентичность) | `templates/CLAUDE.md` | ✅ готов |
-| 5 | Статусная строка | `steps/05-status-line.md` | ⏳ скоро |
-| 6 | Wispr Flow — голосовой ввод | `steps/06-wispr-flow.md` | ⏳ скоро |
-| 7 | **Telegram MCP** | `steps/07-telegram-mcp.md` | ✅ готов |
-| 8 | **Figma MCP** (доступ к промо-материалам) | `steps/08-figma-mcp.md` | ✅ готов |
-| 9 | **Chromium с debug-портом** | `steps/09-chromium-setup.md` | ✅ готов |
-| 10 | **Google Workspace MCP** (через Chromium) | `steps/10-google-mcp.md` | ✅ готов |
-| 11 | **Exa MCP** — web search | `steps/11-exa-mcp.md` | ✅ готов |
-| 12 | Cmux/tmux session restore (Mac, опционально) | `steps/12-cmux-restore.md` | ⏳ скоро |
-
-> Пока шаги 1-3, 5-6 не готовы — отдельные инструкции по установке Claude Code и Wispr Flow есть прямо внутри `templates/CLAUDE.md` (раздел "Технические заметки"). Начни оттуда, потом возвращайся к остальным шагам.
+| № | Шаг | Файл |
+|---|-----|------|
+| 1 | Pre-install: VPN, Git for Windows, проверка сети | [`steps/01-pre-install.md`](steps/01-pre-install.md) |
+| 2 | Установка Claude Code (Mac/Windows) | [`steps/02-install-claude.md`](steps/02-install-claude.md) |
+| 3 | Авторизация Claude (подписка) | [`steps/03-auth.md`](steps/03-auth.md) |
+| 4 | Личный CLAUDE.md (бренд + идентичность) | [`templates/CLAUDE.md`](templates/CLAUDE.md) |
+| 5 | Статусная строка | [`steps/05-status-line.md`](steps/05-status-line.md) |
+| 6 | Wispr Flow — голосовой ввод | [`steps/06-wispr-flow.md`](steps/06-wispr-flow.md) |
+| 7 | Telegram MCP | [`steps/07-telegram-mcp.md`](steps/07-telegram-mcp.md) |
+| 8 | Figma MCP (доступ к промо-материалам Altairika) | [`steps/08-figma-mcp.md`](steps/08-figma-mcp.md) |
+| 9 | Chromium с debug-портом | [`steps/09-chromium-setup.md`](steps/09-chromium-setup.md) |
+| 10 | Google Workspace через Chromium | [`steps/10-google-mcp.md`](steps/10-google-mcp.md) |
+| 11 | Exa MCP — web search | [`steps/11-exa-mcp.md`](steps/11-exa-mcp.md) |
+| 12 | Cmux session restore (Mac, опционально) | [`steps/12-cmux-restore.md`](steps/12-cmux-restore.md) |
 
 ## Быстрый старт
 
-1. Установи Claude Code на свою ОС (см. секцию в `templates/CLAUDE.md` или подожди шаги 1-3)
-2. Скачай `templates/CLAUDE.md` сырым файлом:
+1. Шаг 1 — VPN и Git for Windows (если Windows)
+2. Шаг 2-3 — установи Claude Code и авторизуйся
+3. Шаг 4 — скачай `templates/CLAUDE.md` сырым:
    - Mac: `curl -fsSL https://raw.githubusercontent.com/altbar/altairika-franchise/main/templates/CLAUDE.md -o ~/.claude/CLAUDE.md`
-   - Windows PowerShell: `iwr https://raw.githubusercontent.com/altbar/altairika-franchise/main/templates/CLAUDE.md -OutFile $env:USERPROFILE\.claude\CLAUDE.md`
-3. Открой этот файл, поправь секцию "Кто я" под себя
-4. Запусти `claude`, напиши "прочитай мой CLAUDE.md, расскажи кратко что обо мне знаешь" — проверь что подхватилось
-5. Иди по шагам 7-11 чтобы подключить MCP-инструменты (Telegram, Figma, Chromium+Google, Exa)
+   - Windows: `iwr https://raw.githubusercontent.com/altbar/altairika-franchise/main/templates/CLAUDE.md -OutFile $env:USERPROFILE\.claude\CLAUDE.md`
+4. Открой этот файл, поправь секцию "Кто я" под себя
+5. Запусти `claude`, напиши "прочитай мой CLAUDE.md, расскажи что обо мне знаешь" — проверь что подхватилось
+6. Шаги 5-11 — подключи нужные тебе инструменты (минимум: 6 голос, 7 Telegram, 9-10 Chromium+Google, 11 Exa)
 
 ## Доступ к корпоративным ресурсам
 
 После установки попроси у УК (TG @altbar) доступ к:
-- **Figma пространству Altairika** — пришли свой email из Figma
-- **Vault'у с инструкциями для франчайзи** (если есть/появится) — пришли GitHub username
+- **Figma пространству Altairika** — пришли свой email, под которым залогинена в Figma
 - **Telegram-каналу для франчайзи** — пришли свой @username
 
 ## Поддержка
 
 - Что-то не работает: TG @altbar или почта k.urvantcev@gmail.com со скриншотом
 - Идея для нового скилла: создай Issue в этом репо
-- Хочешь поделиться промптом, который тебе зашёл: PR в `prompts/`
+- Хочешь поделиться промптом, который зашёл: PR в `prompts/`
 
 ## Roadmap
 
-- [x] CLAUDE.md template
-- [x] Telegram MCP step
-- [x] Figma MCP step
-- [x] Chromium setup step
-- [x] Google Workspace MCP step
-- [x] Exa MCP step
-- [ ] Pre-install / Install / Auth steps (1-3) — вынести из CLAUDE.md в отдельные файлы
-- [ ] Status-line / Wispr Flow steps (5-6) — то же
-- [ ] Cmux step (12, Mac only)
-- [ ] `install.sh` / `install.ps1` — автоматическая раскатка кита
-- [ ] `altairika-update` — скрипт обновления
+- [x] CLAUDE.md template (бренд, тон, безопасность)
+- [x] Шаги 1-12 — все step-файлы готовы
+- [ ] `install.sh` / `install.ps1` — автоматическая раскатка кита (вместо ручного копирования)
+- [ ] `altairika-update` — скрипт обновления (`git pull` + подкладка обновлений в `~/.claude/`)
 - [ ] Skills: post-writer, parent-reply, school-script, birthday-script, review-response
-- [ ] Prompt templates (5-7 готовых)
+- [ ] Prompt templates (5-7 готовых под повседневные задачи)
+- [ ] Vault — внутренние инструкции от УК (расписания акций, новые программы)

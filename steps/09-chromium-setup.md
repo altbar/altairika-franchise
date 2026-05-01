@@ -84,22 +84,26 @@ $chromiumPath = "$env:LOCALAPPDATA\Chromium\Application\chrome.exe"
 
 ## Подключение к Claude
 
-В `~/.claude/settings.json` добавь в `mcpServers`:
+Используем официальный MCP от Google — `chrome-devtools-mcp`. В `~/.claude/settings.json` добавь в `mcpServers`:
 
 ```json
 {
   "mcpServers": {
-    "chrome-browser": {
+    "chrome-devtools": {
       "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp", "--browserUrl", "http://127.0.0.1:9222"]
+      "args": ["-y", "chrome-devtools-mcp@latest", "--browser-url=http://127.0.0.1:9222"]
     }
   }
 }
 ```
 
-(имя пакета может отличаться — уточню в следующей итерации)
-
 Перезапусти Claude.
+
+## Что умеет chrome-devtools-mcp
+
+Через этот MCP Claude получает контроль над твоим Chromium: открывать страницы, кликать, заполнять формы, делать скриншоты, читать DOM, выполнять JS, видеть network-запросы и console-логи.
+
+Это значит: **через Chromium ты получаешь доступ к любому веб-сервису, в который залогинен** — Google, Yandex, банки, CRM, админки. Без отдельных API-MCP под каждый сервис.
 
 ## Использование
 
