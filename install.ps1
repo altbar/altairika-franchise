@@ -58,6 +58,19 @@ if (Test-Path $ClaudeMd) {
 Copy-Item (Join-Path $InstallDir "templates\CLAUDE.md") $ClaudeMd -Force
 Write-Host "Установлен: $ClaudeMd"
 
+# Copy skills
+$SkillsDir = Join-Path $ClaudeDir "skills"
+New-Item -ItemType Directory -Path $SkillsDir -Force | Out-Null
+$srcSkills = Join-Path $InstallDir "skills"
+$skillsCount = 0
+if (Test-Path $srcSkills) {
+    Get-ChildItem -Path $srcSkills -Filter "*.md" | ForEach-Object {
+        Copy-Item $_.FullName $SkillsDir -Force
+        $skillsCount++
+    }
+}
+Write-Host "Установлено скиллов: $skillsCount (в $SkillsDir\)"
+
 # Create altairika-update.cmd shim
 New-Item -ItemType Directory -Path $BinDir -Force | Out-Null
 $UpdateBat = Join-Path $BinDir "altairika-update.cmd"

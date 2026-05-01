@@ -48,6 +48,29 @@ if (Test-Path $UserMd) {
     }
 }
 
+# Sync skills
+$SkillsDir = Join-Path $ClaudeDir "skills"
+New-Item -ItemType Directory -Path $SkillsDir -Force | Out-Null
+$srcSkills = Join-Path $InstallDir "skills"
+$skillsUpdated = 0
+if (Test-Path $srcSkills) {
+    Get-ChildItem -Path $srcSkills -Filter "*.md" | ForEach-Object {
+        $dst = Join-Path $SkillsDir $_.Name
+        $needsCopy = $true
+        if (Test-Path $dst) {
+            $diff = Compare-Object (Get-Content $_.FullName) (Get-Content $dst) -ErrorAction SilentlyContinue
+            if (-not $diff) { $needsCopy = $false }
+        }
+        if ($needsCopy) {
+            Copy-Item $_.FullName $dst -Force
+            $skillsUpdated++
+        }
+    }
+}
+if ($skillsUpdated -gt 0) {
+    Write-Host "Обновлено скиллов: $skillsUpdated"
+}
+
 Write-Host ""
 Write-Host "Обновление завершено." -ForegroundColor Green
 Write-Host "Новые шаги/файлы — в $InstallDir\steps\"

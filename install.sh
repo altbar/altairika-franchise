@@ -53,6 +53,17 @@ fi
 cp "$INSTALL_DIR/templates/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
 echo "Установлен: $CLAUDE_DIR/CLAUDE.md"
 
+# Copy skills
+SKILLS_DIR="$CLAUDE_DIR/skills"
+mkdir -p "$SKILLS_DIR"
+SKILLS_COUNT=0
+for skill_file in "$INSTALL_DIR/skills"/*.md; do
+    [ -f "$skill_file" ] || continue
+    cp "$skill_file" "$SKILLS_DIR/"
+    SKILLS_COUNT=$((SKILLS_COUNT + 1))
+done
+echo "Установлено скиллов: $SKILLS_COUNT (в $SKILLS_DIR/)"
+
 # Set up altairika-update command
 mkdir -p "$BIN_DIR"
 chmod +x "$INSTALL_DIR/scripts/altairika-update.sh"

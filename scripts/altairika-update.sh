@@ -42,6 +42,22 @@ if [ -f "$USER_MD" ] && ! diff -q "$TEMPLATE_MD" "$USER_MD" >/dev/null 2>&1; the
     echo "  3. Если хочешь смерджить вручную — открой оба в редакторе"
 fi
 
+# Sync skills (overwrite — skills shouldn't be edited locally)
+SKILLS_DIR="$CLAUDE_DIR/skills"
+mkdir -p "$SKILLS_DIR"
+SKILLS_UPDATED=0
+for skill_file in "$INSTALL_DIR/skills"/*.md; do
+    [ -f "$skill_file" ] || continue
+    name=$(basename "$skill_file")
+    if [ ! -f "$SKILLS_DIR/$name" ] || ! diff -q "$skill_file" "$SKILLS_DIR/$name" >/dev/null 2>&1; then
+        cp "$skill_file" "$SKILLS_DIR/$name"
+        SKILLS_UPDATED=$((SKILLS_UPDATED + 1))
+    fi
+done
+if [ "$SKILLS_UPDATED" -gt 0 ]; then
+    echo "Обновлено скиллов: $SKILLS_UPDATED"
+fi
+
 echo ""
 echo "Обновление завершено."
 echo "Новые шаги/файлы — в $INSTALL_DIR/steps/"

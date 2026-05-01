@@ -42,7 +42,22 @@ irm https://raw.githubusercontent.com/altbar/altairika-franchise/main/install.ps
 Что сделает скрипт:
 - Клонирует репо в `~/altairika-franchise/`
 - Скопирует `templates/CLAUDE.md` в `~/.claude/CLAUDE.md` (с бэкапом существующего)
+- Скопирует все 5 скиллов из `skills/` в `~/.claude/skills/`
 - Установит команду `altairika-update` для обновлений
+
+## Что делают скиллы
+
+После установки кита Claude автоматически распознаёт типичные задачи франчайзи и применяет нужный скилл:
+
+| Скилл | Когда срабатывает |
+|-------|-------------------|
+| `altairika-post` | "напиши пост для TG / VK / Instagram про..." |
+| `altairika-parent-reply` | "родитель написал...", "как ответить родителю на..." |
+| `altairika-school-outreach` | "напиши директору школы...", "скрипт звонка завучу", "КП для школы" |
+| `altairika-birthday-script` | "программа ДР", "скрипт администратора по ДР", "приглашение на ДР" |
+| `altairika-review-response` | "ответ на отзыв", "клиент написал отзыв на 2GIS / Я.Картах" |
+
+Все скиллы соблюдают тон бренда из `CLAUDE.md` и предупреждают про обезличивание данных клиентов перед отправкой в Claude.
 
 После установки:
 1. Открой `~/.claude/CLAUDE.md` (или `%USERPROFILE%\.claude\CLAUDE.md`) и поправь секцию "Кто я"
@@ -76,7 +91,7 @@ altairika-update
 - [x] CLAUDE.md template (бренд, тон, безопасность)
 - [x] Шаги 1-12 — все step-файлы готовы
 - [x] `install.sh` / `install.ps1` — автоматическая раскатка кита
-- [x] `altairika-update` — скрипт обновления (`git pull` + проверка изменений CLAUDE.md)
-- [ ] Skills: post-writer, parent-reply, school-script, birthday-script, review-response
+- [x] `altairika-update` — скрипт обновления (`git pull` + проверка изменений CLAUDE.md, синхронизация скиллов)
+- [x] Skills: `altairika-post`, `altairika-parent-reply`, `altairika-school-outreach`, `altairika-birthday-script`, `altairika-review-response`
 - [ ] Prompt templates (5-7 готовых под повседневные задачи)
 - [ ] Vault — внутренние инструкции от УК (расписания акций, новые программы)
