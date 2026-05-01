@@ -59,6 +59,30 @@ irm https://raw.githubusercontent.com/altbar/altairika-franchise/main/install.ps
 
 Все скиллы соблюдают тон бренда из `CLAUDE.md` и предупреждают про обезличивание данных клиентов перед отправкой в Claude.
 
+## Готовые промпты (`prompts/`)
+
+Это шаблоны под повторяющиеся задачи — копируешь, заполняешь плейсхолдеры, вставляешь в Claude:
+
+| Промпт | Когда использовать |
+|--------|--------------------|
+| [`weekly-content-plan.md`](prompts/weekly-content-plan.md) | Воскресенье/понедельник — план постов на неделю |
+| [`competitor-analysis.md`](prompts/competitor-analysis.md) | Раз в квартал — разбор конкурента (нужен Exa MCP) |
+| [`monthly-report.md`](prompts/monthly-report.md) | Начало месяца — отчёт прошлого месяца для УК |
+| [`holiday-campaign.md`](prompts/holiday-campaign.md) | За 2-3 недели до праздника — кампания (НГ, 8 марта, 1 сентября) |
+| [`feedback-summary.md`](prompts/feedback-summary.md) | Раз в месяц — сводка отзывов клиентов |
+
+## Vault — материалы от УК
+
+Папка [`vault/`](vault/README.md) — туда УК Altairika складывает актуальные материалы для всей сети: сезонные кампании, новые программы, методички, шаблоны. Read-only для франчайзи. После `altairika-update` свежее доступно у тебя локально:
+
+```
+~/altairika-franchise/vault/
+  2026-04-30-vault-launch.md
+  ...
+```
+
+Спроси Claude: "что нового в vault'е?" или "прочитай vault/<имя>.md и расскажи что применить у меня".
+
 После установки:
 1. Открой `~/.claude/CLAUDE.md` (или `%USERPROFILE%\.claude\CLAUDE.md`) и поправь секцию "Кто я"
 2. Запусти `claude`, напиши "прочитай мой CLAUDE.md, расскажи что обо мне знаешь" — проверь что подхватилось
@@ -93,5 +117,6 @@ altairika-update
 - [x] `install.sh` / `install.ps1` — автоматическая раскатка кита
 - [x] `altairika-update` — скрипт обновления (`git pull` + проверка изменений CLAUDE.md, синхронизация скиллов)
 - [x] Skills: `altairika-post`, `altairika-parent-reply`, `altairika-school-outreach`, `altairika-birthday-script`, `altairika-review-response`
-- [ ] Prompt templates (5-7 готовых под повседневные задачи)
-- [ ] Vault — внутренние инструкции от УК (расписания акций, новые программы)
+- [x] Prompt templates: weekly-content-plan, competitor-analysis, monthly-report, holiday-campaign, feedback-summary
+- [x] Vault structure для материалов от УК (`vault/README.md` + первый материал)
+- [ ] Реальное наполнение vault: сезонные кампании, методички, шаблоны (по мере появления)
