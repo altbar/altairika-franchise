@@ -1,51 +1,65 @@
 # Altairika Franchise — Claude Code Kit
 
-Стартовый кит для франчайзи Altairika: настройка Claude Code с фирменным контекстом, тоном бренда и шаблонами под типичные задачи (соцсети, родители, школы, ДР, отзывы).
+Стартовый кит для франчайзи Altairika: пошаговая настройка Claude Code с фирменным контекстом, тоном бренда, MCP-инструментами и шаблонами под типичные задачи.
 
-## Что внутри
+## Как пользоваться китом
 
-- `templates/CLAUDE.md` — основной файл с контекстом, тоном бренда, безопасностью и техническими заметками
-- (далее) `install.sh` / `install.ps1` — скрипты установки на Mac/Windows
-- (далее) `altairika-update` — скрипт обновления кита
-- (далее) `skills/` — навыки Claude (онбординг, посты, ответы, скрипты)
-- (далее) `prompts/` — готовые шаблоны промптов
-- (далее) `vault/` — markdown-инструкции от УК (расписания акций, новые программы, отчёты)
+Иди по шагам по порядку. Каждый шаг — отдельный файл с инструкцией. Не перепрыгивай — следующие шаги опираются на предыдущие.
 
-## Как франчайзи установит (черновик инструкции, для отправки партнёру)
+## Шаги онбординга
 
-### Mac
+| № | Шаг | Файл | Статус |
+|---|-----|------|--------|
+| 1 | Pre-install: VPN, Git for Windows | `steps/01-pre-install.md` | ⏳ скоро |
+| 2 | Установка Claude Code (Mac/Windows) | `steps/02-install-claude.md` | ⏳ скоро |
+| 3 | Авторизация Claude (подписка) | `steps/03-auth.md` | ⏳ скоро |
+| 4 | Личный CLAUDE.md (бренд + идентичность) | `templates/CLAUDE.md` | ✅ готов |
+| 5 | Статусная строка | `steps/05-status-line.md` | ⏳ скоро |
+| 6 | Wispr Flow — голосовой ввод | `steps/06-wispr-flow.md` | ⏳ скоро |
+| 7 | **Telegram MCP** | `steps/07-telegram-mcp.md` | ✅ готов |
+| 8 | **Figma MCP** (доступ к промо-материалам) | `steps/08-figma-mcp.md` | ✅ готов |
+| 9 | **Chromium с debug-портом** | `steps/09-chromium-setup.md` | ✅ готов |
+| 10 | **Google Workspace MCP** (через Chromium) | `steps/10-google-mcp.md` | ✅ готов |
+| 11 | **Exa MCP** — web search | `steps/11-exa-mcp.md` | ✅ готов |
+| 12 | Cmux/tmux session restore (Mac, опционально) | `steps/12-cmux-restore.md` | ⏳ скоро |
 
-```bash
-git clone https://github.com/altbar/altairika-franchise.git ~/altairika-franchise
-cp ~/altairika-franchise/templates/CLAUDE.md ~/.claude/CLAUDE.md
-# Открой ~/.claude/CLAUDE.md и поправь "Кто я" под себя
-```
+> Пока шаги 1-3, 5-6 не готовы — отдельные инструкции по установке Claude Code и Wispr Flow есть прямо внутри `templates/CLAUDE.md` (раздел "Технические заметки"). Начни оттуда, потом возвращайся к остальным шагам.
 
-### Windows (PowerShell)
+## Быстрый старт
 
-```powershell
-git clone https://github.com/altbar/altairika-franchise.git $env:USERPROFILE\altairika-franchise
-mkdir $env:USERPROFILE\.claude -ErrorAction SilentlyContinue
-copy $env:USERPROFILE\altairika-franchise\templates\CLAUDE.md $env:USERPROFILE\.claude\CLAUDE.md
-# Открой %USERPROFILE%\.claude\CLAUDE.md в Notepad и поправь "Кто я" под себя
-```
+1. Установи Claude Code на свою ОС (см. секцию в `templates/CLAUDE.md` или подожди шаги 1-3)
+2. Скачай `templates/CLAUDE.md` сырым файлом:
+   - Mac: `curl -fsSL https://raw.githubusercontent.com/altbar/altairika-franchise/main/templates/CLAUDE.md -o ~/.claude/CLAUDE.md`
+   - Windows PowerShell: `iwr https://raw.githubusercontent.com/altbar/altairika-franchise/main/templates/CLAUDE.md -OutFile $env:USERPROFILE\.claude\CLAUDE.md`
+3. Открой этот файл, поправь секцию "Кто я" под себя
+4. Запусти `claude`, напиши "прочитай мой CLAUDE.md, расскажи кратко что обо мне знаешь" — проверь что подхватилось
+5. Иди по шагам 7-11 чтобы подключить MCP-инструменты (Telegram, Figma, Chromium+Google, Exa)
 
-После — запусти `claude` в любой папке. В первом сообщении напиши "проверь, что прочитал мой CLAUDE.md и расскажи кратко что ты обо мне знаешь" — убедись что контекст подхватился.
+## Доступ к корпоративным ресурсам
 
-## Доступ
+После установки попроси у УК (TG @altbar) доступ к:
+- **Figma пространству Altairika** — пришли свой email из Figma
+- **Vault'у с инструкциями для франчайзи** (если есть/появится) — пришли GitHub username
+- **Telegram-каналу для франчайзи** — пришли свой @username
 
-Репо приватный. Чтобы партнёр получил доступ:
-1. Партнёр регистрируется на github.com (если ещё нет)
-2. Присылает свой GitHub username Константину (TG @altbar)
-3. Константин добавляет его как Collaborator с ролью Read
+## Поддержка
+
+- Что-то не работает: TG @altbar или почта k.urvantcev@gmail.com со скриншотом
+- Идея для нового скилла: создай Issue в этом репо
+- Хочешь поделиться промптом, который тебе зашёл: PR в `prompts/`
 
 ## Roadmap
 
-- [x] CLAUDE.md template (этот файл)
-- [ ] install.sh (Mac)
-- [ ] install.ps1 (Windows)
-- [ ] altairika-update script
+- [x] CLAUDE.md template
+- [x] Telegram MCP step
+- [x] Figma MCP step
+- [x] Chromium setup step
+- [x] Google Workspace MCP step
+- [x] Exa MCP step
+- [ ] Pre-install / Install / Auth steps (1-3) — вынести из CLAUDE.md в отдельные файлы
+- [ ] Status-line / Wispr Flow steps (5-6) — то же
+- [ ] Cmux step (12, Mac only)
+- [ ] `install.sh` / `install.ps1` — автоматическая раскатка кита
+- [ ] `altairika-update` — скрипт обновления
 - [ ] Skills: post-writer, parent-reply, school-script, birthday-script, review-response
 - [ ] Prompt templates (5-7 готовых)
-- [ ] Vault structure для контента от УК
-- [ ] GitHub repo `altbar/altairika-franchise` создан и запушен
