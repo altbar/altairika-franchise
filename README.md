@@ -22,6 +22,7 @@
 | 10 | Google Workspace через Chromium | [`steps/10-google-mcp.md`](steps/10-google-mcp.md) |
 | 11 | Exa MCP — web search | [`steps/11-exa-mcp.md`](steps/11-exa-mcp.md) |
 | 12 | Cmux session restore (Mac, опционально) | [`steps/12-cmux-restore.md`](steps/12-cmux-restore.md) |
+| 13 | Yolo shortcut — `claude --dangerously-skip-permissions` под алиасом/хоткеем | [`steps/13-yolo-shortcut.md`](steps/13-yolo-shortcut.md) |
 
 ## Быстрый старт
 
